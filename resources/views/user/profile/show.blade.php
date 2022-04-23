@@ -6,7 +6,11 @@
     </div>
 
     <div class="mt-3 text-center">
-        <a href="{{ route('user.edit.profile',['username'=>$user->username]) }}" class="btn btn-primary">Edit Profile</a>
+        @if (Auth::user()->id == $user->id)
+            <a href="{{ route('user.edit.profile',['username'=>$user->username]) }}" class="btn btn-primary">Edit Profile</a>
+        @else
+            <a href="{{ route('user.follow.profile',['userId'=>$user->id]) }}" class="{{ (Auth::user()->following->contains($user->id) ? 'btn btn-success' : 'btn btn-primary') }}">{{ (Auth::user()->following->contains($user->id) ? 'Unfollow' : 'Follow') }}</a>
+        @endif
     </div>
     
     <div class="row mt-3 text-center">

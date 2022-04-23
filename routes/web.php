@@ -36,6 +36,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('user.home');
 Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('user.show.profile');
 Route::get('/profile/{username}/edit', [ProfileController::class, 'edit'])->name('user.edit.profile');
 Route::patch('/profile/{username}/update', [ProfileController::class, 'update'])->name('user.update.profile');
+Route::get('/follow/{userId}', [ProfileController::class, 'follow'])->name('user.follow.profile');
 
 //Posts
 Route::get('/create-post', [PostController::class, 'create'])->name('user.create.post');

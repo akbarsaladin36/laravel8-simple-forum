@@ -68,5 +68,26 @@ class ProfileController extends Controller
         }
     }
 
+    public function follow($following_id)
+    {
+        if(Auth::check()) {
+            if(Auth::user()->roles !== 'user') {
+                return redirect()->back();
+            }
+
+            $user = Auth::user();
+
+            if($user->following->contains($following_id)) {
+                $user->following()->detach($following_id);
+                return redirect()->back();
+            } else {
+                $user->following()->attach($following_id);
+                return redirect()->back();
+            }
+        } else {
+            return redirect()->route('auth.login');
+        }
+    }
+
 
 }

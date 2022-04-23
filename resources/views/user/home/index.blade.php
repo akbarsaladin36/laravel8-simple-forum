@@ -18,14 +18,20 @@
       </tr>
     </thead>
     <tbody>
-        @foreach ($posts as $post)
-            <tr>
-                <td>{{ $no++ }}</td>
-                <td><a href="{{ route('user.show.post', ['postId'=>$post->id]) }}">{{ $post->title }}</a></td>
-                <td>{{ $post->user->username }}</td>
-                <td>{{ $post->postComment->count() }}</td>
-            </tr>
-        @endforeach
+        @if (!$posts->count())
+          <tr>
+            <td colspan="4"><p class="text-center mt-3">There is no posts in your home page. Please become a first user to create a new post!</p></td>
+          </tr>
+        @else
+            @foreach ($posts as $post)
+                <tr>
+                    <td>{{ $no++ }}</td>
+                    <td><a href="{{ route('user.show.post', ['postId'=>$post->id]) }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ route('user.show.profile',['username'=>$post->user->username]) }}">{{ $post->user->username }}</a></td>
+                    <td>{{ $post->postComment->count() }}</td>
+                </tr>
+            @endforeach
+        @endif
     </tbody>
   </table>
 
