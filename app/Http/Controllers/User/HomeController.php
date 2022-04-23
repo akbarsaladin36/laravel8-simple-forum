@@ -16,9 +16,16 @@ class HomeController extends Controller
                 return redirect()->back();
             }
 
-            $no = 1;
-            $posts = Post::all();
+            $user = Auth::user();
 
+            $id_list = $user->following()->pluck('followers.following_id')->toArray();
+            $id_list[] = $user->id;
+            
+
+
+
+            $no = 1;
+            $posts = Post::whereIn('user_id', $id_list)->get();
             return view('user.home.index', compact('posts','no'));
         } else {
             return redirect()->route('auth.login');

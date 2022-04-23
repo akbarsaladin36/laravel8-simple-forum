@@ -17,6 +17,7 @@ class ProfileController extends Controller
                 return redirect()->back();
             }
             $user = User::where('username', $username)->first();
+
             return view('user.profile.show',['user'=>$user]);
         } else {
             return redirect()->route('auth.login');
