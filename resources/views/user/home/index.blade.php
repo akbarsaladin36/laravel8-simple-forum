@@ -15,6 +15,7 @@
         <th scope="col">Post Title</th>
         <th scope="col">Created By</th>
         <th scope="col">Comments</th>
+        <th scope="col">Likes</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
                     <td><a href="{{ route('user.show.post', ['postId'=>$post->id]) }}">{{ $post->title }}</a></td>
                     <td><a href="{{ route('user.show.profile',['username'=>$post->user->username]) }}">{{ $post->user->username }}</a></td>
                     <td>{{ $post->postComment->count() }}</td>
+                    <td>{{ $post->likes->count() }}</td>
                 </tr>
             @endforeach
         @endif

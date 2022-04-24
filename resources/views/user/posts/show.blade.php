@@ -6,6 +6,12 @@
         <p>{{ $post->body }}</p>
     </div>
 
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            <a href='{{ route('user.like.post',['postId'=>$post->id]) }}' class="btn btn-primary">{{ $post->is_liked() ? 'unlike' : 'like' }}</a>
+        </li>
+    </ul>
+
     <div class="mt-5">
         <h3>Comments</h3>
         <div class="mt-3">

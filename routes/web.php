@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\LikeController;
 use App\Http\Controllers\User\PostController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,9 @@ Route::get('/follow/{userId}', [ProfileController::class, 'follow'])->name('user
 Route::get('/create-post', [PostController::class, 'create'])->name('user.create.post');
 Route::post('/create-post/create', [PostController::class, 'store'])->name('user.store.post');
 Route::get('/post/{postId}', [PostController::class, 'show'])->name('user.show.post');
+Route::get('/post/{postId}/like',[LikeController::class, 'toggle'])->name('user.like.post');
+
+//Comments
 Route::post('/post/{postId}/comment', [CommentController::class, 'store'])->name('user.store.comment');
 
 Route::get('/logout', [HomeController::class, 'logout'])->name('user.logout');
